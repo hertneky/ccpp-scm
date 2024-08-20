@@ -23,6 +23,18 @@ The ``case_config`` namelist expects the following parameters:
       This string must correspond to a dataset included in the directory
       ``ccpp-scm/scm/data/processed_case_input/`` (without the file extension).
 
+-  ``runtime``
+
+   -  Specify the model runtime in seconds (integer). This should correspond with
+      the forcing dataset used. If a runtime is specified that is longer than the
+      supplied forcing, the forcing is held constant at the last specified values.
+
+-  ``runtime_mult``
+
+   -  Use this to override the runtime provided in the case configuration namelist
+      by multiplying the runtime by the given value. This is used, for example, in
+      regression testing to reduce total runtimes.
+
 -  ``sfc_roughness_length_cm``
 
    -  Surface roughness length in cm for calculating surface-related
@@ -396,13 +408,13 @@ Mandatory arguments:
 
 Optional arguments:
 
-#. ``--timestep (-dt)``: SCM timestep, in seconds
+#. ``--timestep (-dt)``: SCM timestep, in seconds, default 3600
 
-#. ``--C_res (-cres)``: UFS spatial resolution
+#. ``--C_res (-cres)``: UFS spatial resolution, default 96
 
-#. ``--suite (-sdf)``: CCPP suite definition file to use for ensemble
+#. ``--suite (-sdf)``: CCPP suite definition file to use for ensemble, default SCM_GFS_v16 
 
-#. ``--save_comp (-sc)``: flag to create UFS reference file for comparison
+#. ``--save_comp (-sc)``: flag to create UFS reference file for comparison, located in ``scm/data/comparison_data``
 
 #. ``--use_nearest (-near)``: flag to indicate using the nearest UFS history file gridpoint
 
